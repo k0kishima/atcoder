@@ -17,3 +17,4 @@
 
 1. VSCode 拡張機能のインストール
    - Black Formatter
+   - Mypy
