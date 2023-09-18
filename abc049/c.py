@@ -15,4 +15,4 @@ while True:
 
     S = S[: -len(hit)]
 
-print("YES" if result else "No")
+print("YES" if result else "NO")
