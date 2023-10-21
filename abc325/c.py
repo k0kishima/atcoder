@@ -20,21 +20,26 @@ def find_neighboring_indices_in(grid, point):
     return neighbors
 
 
-def dfs(row_idx, col_idx, grid, visited):
-    if (
-        row_idx < 0
-        or row_idx >= len(grid)
-        or col_idx < 0
-        or col_idx >= len(grid[0])
-        or visited[row_idx][col_idx]
-        or not grid[row_idx][col_idx]
-    ):
-        return
+def dfs(start_row, start_col, grid, visited):
+    stack = [(start_row, start_col)]
 
-    visited[row_idx][col_idx] = True
+    while stack:
+        row_idx, col_idx = stack.pop()
 
-    for r, c in find_neighboring_indices_in(grid, (row_idx, col_idx)):
-        dfs(r, c, grid, visited)
+        if (
+            row_idx < 0
+            or row_idx >= len(grid)
+            or col_idx < 0
+            or col_idx >= len(grid[0])
+            or visited[row_idx][col_idx]
+            or not grid[row_idx][col_idx]
+        ):
+            continue
+
+        visited[row_idx][col_idx] = True
+
+        for r, c in find_neighboring_indices_in(grid, (row_idx, col_idx)):
+            stack.append((r, c))
 
 
 visited = [[False for _ in range(len(grid[0]))] for _ in range(len(grid))]
